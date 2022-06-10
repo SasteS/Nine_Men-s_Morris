@@ -274,7 +274,7 @@ class Game(object):
                 self.tree_development("B", "W", 1, 1, self.all_players_coordinates, tree.root)
                 
                 start = time()
-                ocena_poteza = self.minimax(tree.root, 2, current_player, 1)
+                ocena_poteza = self.minimax(tree.root, 2, current_player, 2)
                 stop = time()
                 print("vreme pretrage: ", end="")
                 print(stop-start)
@@ -518,7 +518,7 @@ class Game(object):
                 # print(depth)
                 # print(current_node.data._trenutne_koordinate)
                 #return current_node.data.evaluated_value
-                current_node.data.evaluated_value = self.ocena_poteza_prva_faza()#randrange(-50,50)
+                current_node.data.evaluated_value = self.ocena_poteza_prva_faza()#randrange(-50,50) // MOZDA JE BILO BOLJE DA SAM KOD DRVETA KOD LISTOVA DODELJIVAO VREDNOST!!
                 return current_node.data
             else:
                 current_node.data.evaluated_value = self.ocena_poteza_druga_faza()#randrange(-50,50)
@@ -619,7 +619,7 @@ class Game(object):
         cetiri = self._state.num_of_pieces(self._player_pieces, self._opponent_pieces)
         sedam = self._state.num_double_morris(self.double_morris_config_player, self.double_morris_config_opponent)
 
-        return 14 * (jedan) + 43 * (dva) + 10 * (tri) + 11 * (cetiri) + 8 * () #+ 1086 * (8)
+        return 14 * jedan + 43 * dva + 10 * tri + 11 * cetiri + 8 * sedam
 
 
 class Ocena_poteza(object):
